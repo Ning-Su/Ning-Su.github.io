@@ -2,4 +2,4 @@
 
 Hi here is my webpage. 
 
-It's really awesome!
+It's really cool awesome!
