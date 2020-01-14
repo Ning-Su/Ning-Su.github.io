@@ -1,0 +1,32 @@
+
+    #container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;}
+    
+     button  { width: 160px;
+               height: 3vh;
+               cursor: pointer;
+               left: 40px;
+               border: 10px;
+               background-color: #fcdd7c;
+               font-family: Verdana, Geneva, Tahoma, sans-serif;
+               font-size: 11px;
+               padding: 5px;}
+
+
+    p {font-family: Verdana, Geneva, Tahoma, sans-serif;
+      position: relative;
+      font-size: 14px;
+      top: 10px;
+      padding: 5px;
+
+     }
+
+
+     img { position: relative;
+           padding: 5px;
+           width: 865px;
+           top: 40px;
+           }
