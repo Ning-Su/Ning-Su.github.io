@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 20px;
+  padding: 20px;
+}
+
+#container {
+  position: relative;
+  width:100%;
+  height:40%;
+  display: flex;
+  flex-direction: row;
+  height: 113vh;
+  margin: 0px;
+  flex-wrap: wrap;
+}
+
+#chart {
+  left: -80px;
+  height: 60%;
+  width: 60%;
+  min-height: 300px; 
+  position: relative;
+}
+
+#text {
+
+  width: 40%;
+}
+
+h1{
+
+  line-height: 2; 
+  position: relative;
+  font-family: monospace;
+  font-size: 20px;
+  color: #1d232f;
+  width: 40%;
+}
+
+div.a{
+  top: 1%;
+  line-height: 2;
+  font-family: monospace;
+  position: relative;
+  color: #1d232f;
+ }
+
+ button[data-month] {
+   width: 80px;
+   height: 5vh;
+   cursor: pointer;
+   border: none;
+   background-color: #d0e6bb;
+   font-family: monospace;
+  
+ }
+
+ 
+button[data-month]:hover {
+  background: #f4d3d0;;
+}
+
+ button[data-month].active {
+  background: #f4d3d0;
+}
+
+
+
+.axisLabel {
+  font-family: monospace;
+  font-size: 12pt;
+
+}
+
+.axis {
+  font-family: monospace;
+  font-size: 10pt;
+}
+
+
