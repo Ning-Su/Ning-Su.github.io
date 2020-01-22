@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./style/style.css" charset="utf-8">
+        <script src="lib/d3.js"></script>
+    </head>
+    <body>
+
+
+
+        <div class="w3-top">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <a href="#home" class="w3-bar-item w3-button">Homepage</a>
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button">About Boston</a>
+      <a href="#menu" class="w3-bar-item w3-button">Crimes in Boston</a>
+
+    </div>
+  </div>
+</div>
+
+
+<header class="w3-display-container w3-content w3-wide" style="max-width:1800px;min-width:500px" id="home">
+  <img class="w3-image" src="./image/policecar.jpg"  width="1800" height="800">
+  <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+
+  </div>
+</header>
+
+
+<div class="w3-content" style="max-width:1600px">
+
+
+  <div class="w3-row w3-padding-64" id="about">
+    <div class="w3-col m6 w3-padding-large w3-hide-small">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d188820.04331163416!2d-71.11036646259365!3d42.31451858998792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1574730855431!5m2!1sen!2sus" width="700" height="500" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+
+    <div class="w3-col m6 w3-padding-large">
+      <h1 class="w3-center">About Boston</h1><br>
+      <h5 class="w3-center">A brief history of Boston</h5>
+      <p class="w3-large">Boston is the capital and most populous city of the Commonwealth of Massachusetts in the United States, and the 21st most populous city in the United States. The city proper covers 48 square miles with an estimated population of 694,583 in 2018, making it also the most populous city in New England. Boston is the seat of Suffolk County as well, although the county government was disbanded on July 1, 1999. The city is the economic and cultural anchor of a substantially larger metropolitan area known as Greater Boston, a metropolitan statistical area (MSA) home to a census-estimated 4.8 million people in 2016 and ranking as the tenth-largest such area in the country. As a combined statistical area (CSA), this wider commuting region is home to some 8.2 million people, making it the sixth most populous in the United States.<br> <br>Today, The Boston area's many colleges and universities make it an international center of higher education, including law, medicine, engineering, and business, and the city is considered to be a world leader in innovation and entrepreneurship, with nearly 2,000 startups.<br><br>(Source from: https://en.wikipedia.org/wiki/Boston)
+        </div>
+  </div>
+
+  <hr>
+
+
+  <div id="menu">
+    <div class="w3-col m6 w3-padding-large">
+      <h1 class="w3-center">Crimes in Boston</h1><br>
+      <h5 class="w3-center">Crimes in Boston from 2015 to 2018</h4>
+      <p class="w3-large">The crimes generally can be divided into two categories: violent crimes and property crimes. Violent crime includes murder, rape, robbery and assault. Property crime include burglary, theft and vehicle theft. According to the dataset, from 2015 to 2018, the overall crime rate of Boston is equal to the national average. The number of property crime is far greater than that of violent crime. Besides, Boston is only safer than 14% of the cities in the United States.
+
+<br><br>The crime dataset in the map is from the new crime incident report system, which includes the type of incident, when and where it happened, reporting area and etc. The original dataset records around 320,000 different kinds of incidents with details from 2015 to 2018. <br><br>In this map, I only record a small parts of incidents from 2015 to 2018 in Boston. Each incident uses longitude and latitude to locate the accurate location on the map. The size of circle represents the the size of reporting area. When you hover the mouse on the circle, you can see the name of the street and offense description of each incident.
+
+<br><br>Making a Boston crime statistics map can help Boston local law enforcement agency better understand areas with high crime rates and areas with low crime rates, so that they can respond more quickly and timely in case of crime. <br><br> (Dataset Source from: https://www.kaggle.com/ankkur13/boston-crime-data)
+ </p>
+
+
+    </div>
+
+    <div class="w3-col l6 w3-padding-large">
+      <div id="container">
+          <div id="slider">
+              <input id="selectYEAR" type="range" step=1>
+          </div>
+          <div id="chart"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+
+
+</div>
+
+
+<footer class="w3-center">
+  <p> Mini Project 3 <br>Designed by <a href="https://ningsu95.wordpress.com"  target="_blank" class="w3-hover-text-red">Ning Su</a></p>
+</footer>
+
+        <script src="./script.js"></script>
+    </body>
+</html>
