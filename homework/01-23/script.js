@@ -1,6 +1,6 @@
  
       var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/111999474";
-      var frequency = 10 * 1000; 
+      var frequency = 1 * 1000; 
 
       function fetchData() {
 
