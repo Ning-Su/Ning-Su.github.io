@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8" />
+  <title>Moving Circles</title>
+  <script src="https://d3js.org/d3.v4.min.js"> </script>
+  </head>
+  <body>
+
+    <script>
+        
+var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/111999474";
+var frequency = 10 * 1000; 
+
+function fetchData() {
+
+d3.json(realtimeURL, function(error, users) {
+
+
+
+
+
+});
+
+}
+
+
+fetchData();
+setInterval(fetchData, frequency);
+
+    fetchData();
+      setInterval(fetchData, frequency);
+
+
+        
+        </script> 
+
+</body>
+</html>
