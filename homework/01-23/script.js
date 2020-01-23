@@ -1,17 +1,19 @@
  
       var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/111999474";
-      var frequency = 1 * 1000; 
+      var frequency = 10 * 1000; 
 
-      function fetchData() {
-
-        d3.json(realtimeURL, function(error, users) {
-          var width = window.innerWidth;
+ var width = window.innerWidth;
     var height = window.innerHeight;
     var margin = {top: 100, left: 200, right: 100, bottom: 100};
     var svg = d3.select("body")
       .append("svg")
       .attr("width",width)
       .attr("height",height);
+
+      function fetchData() {
+
+        d3.json(realtimeURL, function(error, users) {
+         
 
 
     var data2 = [
