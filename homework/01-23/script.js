@@ -5,16 +5,16 @@
      var width = window.innerWidth;
      var height = window.innerHeight;
      var margin = {top: 100, left: 200, right: 100, bottom: 100};
-    
+     var svg = d3.select("body")
+      .append("svg")
+      .attr("width",width)
+      .attr("height",height);
 
       function fetchData() {
 
         d3.json(realtimeURL, function(error, users) {
          
-var svg = d3.select("body")
-      .append("svg")
-      .attr("width",width)
-      .attr("height",height);
+
 
     var data2 = [
         {area: "Back Bay", rent: 2920, income: 97.8, population: 21.88, charles: true},
