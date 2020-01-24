@@ -29,6 +29,14 @@ var svg = d3.select("#chart")
 .attr("width", width)
 .attr("height", height);
 
+var barWidth = width / dataMax;
+
+var x = d3.scaleLinear()
+ .domain([dataMax, 1])
+ .range([0, width - barWidth]);
+
+
+
 function fetchData() {
 
 d3.json(realtimeURL, function(error, users) {
@@ -44,7 +52,13 @@ d3.json(realtimeURL, function(error, users) {
       . data(data);
 
     bars.enter().append("rect")
-      . data("class", "bar");
+      .attr("class", "bar")
+      .attr("width", barWidth)
+      .attr("height",  )
+      .attr("x", function(d, i) {
+          return x(i+1);
+      });
+
 
     bars.exit().remove();
 
