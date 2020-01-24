@@ -55,16 +55,17 @@ d3.json(realtimeURL, function(error, users) {
     var bars = svg.selectAll(".bar")
       . data(data);
 
-    bars.enter().append("rect")
+    var enter = bars.enter().append("rect")
       .attr("class", "bar")
       .attr("width", barWidth)
-      .attr("height",barHeight)
-
+      .attr("height",0)
+      .attr("y", height)
       .attr("x", function(d, i) {
           return x(i+1);
       });
 
-    bars
+    bars.merge(enter)
+      .transition().duration(frequency  2)
       .attr("height", barHeight)
       .attr("y", function(d) {
           var h = barHeight(d);
