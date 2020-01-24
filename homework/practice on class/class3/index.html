@@ -16,14 +16,14 @@
 
     <script>
         
-var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/111999474";
+var realtimeURL = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
 var frequency = 10 * 1000; 
 
 var dataMax = 20;
 var data = [];
 
 var width = window.innerWidth;
-var height = 300;
+var height = window.innerWidth;
 
 var svg = d3.select("#chart")
 .attr("width", width)
@@ -86,11 +86,11 @@ d3.json(realtimeURL, function(error, users) {
       });
 
 
-    bars.exit().remove();
-
-
-
-
+    bars.exit().
+    .transition().duration(frequency / 2)
+    .attr("height", 0)
+    .attr("y", height)
+    .remove();
 
 
 });
