@@ -48,13 +48,17 @@ d3.json(realtimeURL, function(error, users) {
 
     console.log(data);
 
+    var barHeight = d3.scaleLinear()
+       .domain([0, d3.max(data)])
+       .range([0, height]);
+
     var bars = svg.selectAll(".bar")
       . data(data);
 
     bars.enter().append("rect")
       .attr("class", "bar")
       .attr("width", barWidth)
-      .attr("height",100)
+      .attr("height",barHeight)
       .attr("x", function(d, i) {
           return x(i+1);
       });
