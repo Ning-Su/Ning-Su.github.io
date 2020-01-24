@@ -59,10 +59,17 @@ d3.json(realtimeURL, function(error, users) {
       .attr("class", "bar")
       .attr("width", barWidth)
       .attr("height",barHeight)
+
       .attr("x", function(d, i) {
           return x(i+1);
       });
 
+    bars
+      .attr("height", barHeight);
+      .attr("y", function(d) {
+          var h = barHeight(d);
+          return height - h;
+      });
 
     bars.exit().remove();
 
