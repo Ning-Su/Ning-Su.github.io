@@ -41,39 +41,52 @@ function fetchData() {
 
 d3.json(realtimeURL, function(error, users) {
 
+    var dataObject = {
+        users: users,
+        timestamp: new Date()
+    };
+
+
     data.unshift(users);
-    if (data.length > dataMax) {
+    if (data.length > dataMax) 
         data.pop();
-    }
+    
 
     console.log(data);
+
+    var maximum = d3.max(data, function(d) {
+        return d.timestamp;
+    });
 
     var barHeight = d3.scaleLinear()
        .domain([0, d3.max(data)])
        .range([0, height]);
 
     var bars = svg.selectAll(".bar")
-      . data(data);
+      . data(data, function(d) {
+          return d.timestamp;
+      });
 
     var enter = bars.enter().append("rect")
       .attr("class", "bar")
       .attr("width", barWidth)
       .attr("height",0)
       .attr("y", height)
-      .attr("x", function(d, i) {
-          return x(i+1);
-      });
+
 
     bars.merge(enter)
-      .transition().duration(frequency  2)
+      .transition().duration(frequency / 2)
       .attr("height", barHeight)
       .attr("y", function(d) {
           var h = barHeight(d);
           return height - h;
+      })
+    .attr("x", function(d, i) {
+          return x(i+1);
       });
 
-    bars.exit().remove();
 
+    bars.exit().remove();
 
 
 
