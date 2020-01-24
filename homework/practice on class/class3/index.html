@@ -54,7 +54,7 @@ d3.json(realtimeURL, function(error, users) {
     bars.enter().append("rect")
       .attr("class", "bar")
       .attr("width", barWidth)
-      .attr("height",  )
+      .attr("height",100)
       .attr("x", function(d, i) {
           return x(i+1);
       });
