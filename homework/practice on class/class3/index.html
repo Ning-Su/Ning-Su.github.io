@@ -40,6 +40,14 @@ d3.json(realtimeURL, function(error, users) {
 
     console.log(data);
 
+    var bars = d3.selectAll(".bar")
+      . data(data);
+
+    bars.enter().append("rect")
+      . data("class", "bar");
+
+    bars.exit().remove();
+
 
 
 
