@@ -65,7 +65,7 @@ d3.json(realtimeURL, function(error, users) {
       });
 
     bars
-      .attr("height", barHeight);
+      .attr("height", barHeight)
       .attr("y", function(d) {
           var h = barHeight(d);
           return height - h;
