@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <title>SVG Text</title>
+    <style>
+
+        .box {
+          fill: transparent;
+          stroke: red;
+          stroke-width: 2px;
+        }
+
+        tspan{
+            baseline-shift: -100%;
+        }
+      
+      </style>
+  </head>
+  <body>
+
+    <svg id="chart" width="100%" height="100vh"></svg>
+
+    <script>
+    
+      var svg = d3.select("#chart");
+    
+      var data1 = [
+        "Hello Class, my name is Dave",
+        "Test Title",
+        "Some really long text that we will probably have fun working with."
+      ];
+    
+      var data2 = [
+        "One little string..."
+      ];
+
+
+      var columnWidth = 100;
+
+function drawBoxes(iceCream) {
+//code draws 3 red boxes
+  var boxes = svg.selectAll(".box")
+      .data(iceCream);
+
+  boxes.enter().append("rect")
+    .attr("class", "box")
+    .attr("x", function(d, i) {
+      return i * columnWidth;
+    })
+    .attr("y", 0)
+    .attr("width", columnWidth)
+    .attr("height", 200);
+
+  boxes.exit().remove();
+
+
+
+//code that draws labels
+
+var labels = svg.selectAll(".label")
+  .data(iceCream);
+
+var fontSize = 20;
+
+var enterLabels = labels.enter().append("text")
+  .attr("class", "label")
+  .attr("font-size", fontSize)
+  .attr("baseline-shift", "-100%")
+  .attr("y", 0)
+  .attr("x", function(d, i) {
+    return i * columnWidth;
+  })
+  .attr("width", columnWidth)
+  .attr("height", 200);
+
+labels.merge(enterLabels)
+.each(function(d, i) {
+    var textElement = d3.select(this);
+    textElement.text("");
+
+    var words = d.split(" ");
+    var tspan = textElement.append("tspan");
+    var line = 0;
+
+    words.forEach(function(word) {
+
+    var sentence = tspan.text();
+    tspan.text(sentence + " " + word);
+    
+    var domElement = tspan.node();
+    var tspanWidth = domElement.getBoundingClientRect().width;
+    console.log(tspanWidth);
+
+    if (tspanWidth > columnWidth) {
+        line++;
+    tspan.text(sentence);
+    tspan = textElement.append("tspan")
+      .attr("y", line * fontSize)
+      .attr("x", columnWidth * i)
+      .text(word);
+
+    }
+
+  });
+
+});
+
+labels.exit().remove();
+
+}
+
+drawBoxes(data1);
+
+    
+    </script>
+
+
+
+
+
+  </body>
+</html>
