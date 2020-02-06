@@ -167,7 +167,9 @@
 
                             var myText = "There are currently " + d.users + " users on Data USA.";
                             var words = myText.split(" ");
-                            var tspan = textElement.append("tspan");
+                            var tspan = textElement.append("tspan")
+                            .attr("y", barHeight(d.users) + fontSize * line)
+                            .attr("x", x( i + 1 ))
                             var line = 0;
 
                             words.forEach(function(word) {
@@ -184,8 +186,8 @@
                             tspan.text(sentence);
                             tspan = textElement.append("tspan")
                             .attr("y", barHeight(d.users) + fontSize * line)
-                    .attr("x", x( i + 1 ))
-                        .text(word);
+                            .attr("x", x( i + 1 ))
+                            .text(word);
                             }
                         })
                     });
