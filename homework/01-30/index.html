@@ -139,6 +139,7 @@
                         .attr("class", "label")
                         .attr("width", barWidth)
                         .attr("height", 0)
+                        .attr("baseline-shift", "-100%")
                         .attr("font-size", fontSize)
                         .attr("y", function(d){ return barHeight(d.users)})
                         .attr("x", function(d, i) {
@@ -170,6 +171,7 @@
                             var tspan = textElement.append("tspan")
                             .attr("y", barHeight(d.users) + fontSize * line)
                             .attr("x", x( i + 1 ))
+                       
                             var line = 0;
 
                             words.forEach(function(word) {
