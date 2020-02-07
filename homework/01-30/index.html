@@ -7,6 +7,12 @@
         body {
             margin: 0;
         }
+
+        tspan {
+    baseline-shift: -100%;
+}
+
+
         </style>
 
     </head>
@@ -159,6 +165,8 @@
                         .attr("x", function(d, i){
                             return x( i + 1 )
                         })
+                        
+                        
 
 
 
@@ -171,6 +179,7 @@
                             var tspan = textElement.append("tspan")
                             .attr("y", barHeight(d.users) + fontSize * line)
                             .attr("x", x( i + 1 ))
+                            
                        
                             var line = 0;
 
