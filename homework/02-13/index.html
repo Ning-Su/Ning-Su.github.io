@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <p1>Scores in San Francisco Bay Area</p1>
+    <svg id="chart"></svg>
+
+    <script>
+      var URL = "https://api.teleport.org/api/urban_areas/slug:san-francisco-bay-area/scores/";
+
+      var data = [];
+
+ 
+      function fetchData() {
+
+        d3.json(URL, function(error, users) {
+
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+   
+
+        var margin = {
+        top: 50,
+        right: 50,
+        bottom: 150,
+        left: 150
+      };
+
+        
+        var svg = d3.select("#chart")
+        .attr("width", width)
+        .attr("height", height);
+
+        var xScale = d3.scaleBand()
+        .domain("Housing", "Cost of Living", "Startups", "Venture Capital","Travel Connectivity", "Commute", "Business Freedom", "Safety","Healthcare","Education", "Environmental Quality","Economy", "Taxation"    )
+        .range([margin.left, width-margin.right])
+        .padding(0.2);
+       
+
+
+        var yScale = d3.scaleLinear()
+            .domain([0, 10])
+            .range([height-margin.bottom, margin.top]);
+
+        var xAxis = svg.append("g")
+            .attr("class","axis")
+            .attr("transform", `translate(0,${height-margin.bottom})`)
+            .call(d3.axisBottom().scale(xScale).tickFormat(d3.format("Y")));
+
+        var yAxis = svg.append("g")
+            .attr("class","axis")
+            .attr("transform", `translate(${margin.left},0)`)
+            .call(d3.axisLeft().scale(yScale));
+
+        var bar = svg.selectAll("rect")
+            .data(data.data)
+            .enter()
+            .append("rect")
+                .attr("x", function(d) { return xScale(d.name);})
+                .attr("y", function(d) { return yScale(d.score_out_of_10); })
+                .attr("width", xScale.bandwidth())
+                .attr("height", function(d) { return height - margin.bottom - yScale(d.score_out_of_10);})
+                .attr("stroke","black")
+                .attr("fill", "grey");
+
+        var xAxisLabel = svg.append("text")
+            .attr("class","axisLabel")
+            .attr("x", width/2)
+            .attr("y", height-margin.bottom/2)
+            .text("Name");
+
+        var yAxisLabel = svg.append("text")
+            .attr("class","axisLabel")
+            .attr("transform","rotate(-90)")
+            .attr("x",-height/2)
+            .attr("y",margin.left/3)
+            .text("Score");
+
+                });
+                            
+
+      }
+
+      fetchData();
+    
+    </script>
+
+  </body>
+</html>
