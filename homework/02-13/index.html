@@ -5,10 +5,18 @@
     <meta charset="utf-8" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <style>
-
+p1
+{font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-size: 24pt;
+left: 40%;
+top: 20px;
+text-align: center;
+position: relative;
+}
     </style>
   </head>
   <body>
+    
     <p1>Scores in San Francisco Bay Area</p1>
     <svg id="chart"></svg>
 
@@ -20,7 +28,7 @@
  
       function fetchData() {
 
-        d3.json(URL, function(error, users) {
+        d3.json(URL, function(error, data) {
 
         var width = window.innerWidth;
         var height = window.innerHeight;
@@ -39,10 +47,10 @@
         .attr("height", height);
 
         var xScale = d3.scaleBand()
-        .domain("Housing", "Cost of Living", "Startups", "Venture Capital","Travel Connectivity", "Commute", "Business Freedom", "Safety","Healthcare","Education", "Environmental Quality","Economy", "Taxation"    )
+        .domain("Housing","Cost of Living","Healthcare","Education", "Environmental Quality","Economy", "Taxation"    )
         .range([margin.left, width-margin.right])
         .padding(0.2);
-       
+        
 
 
         var yScale = d3.scaleLinear()
@@ -59,29 +67,33 @@
             .attr("transform", `translate(${margin.left},0)`)
             .call(d3.axisLeft().scale(yScale));
 
-        var bar = svg.selectAll("rect")
-            .data(data.data)
-            .enter()
-            .append("rect")
-                .attr("x", function(d) { return xScale(d.name);})
-                .attr("y", function(d) { return yScale(d.score_out_of_10); })
-                .attr("width", xScale.bandwidth())
-                .attr("height", function(d) { return height - margin.bottom - yScale(d.score_out_of_10);})
-                .attr("stroke","black")
-                .attr("fill", "grey");
-
-        var xAxisLabel = svg.append("text")
+            var xAxisLabel = svg.append("text")
             .attr("class","axisLabel")
             .attr("x", width/2)
             .attr("y", height-margin.bottom/2)
+            .attr("font-family","Gill Sans")
+            .attr("font-size", "16pt")
             .text("Name");
 
         var yAxisLabel = svg.append("text")
             .attr("class","axisLabel")
             .attr("transform","rotate(-90)")
             .attr("x",-height/2)
-            .attr("y",margin.left/3)
+            .attr("y",margin.left/2)
+            .attr("font-family","Gill Sans")
+            .attr("font-size", "16pt")
             .text("Score");
+
+        var bar = svg.selectAll("rect")
+            .data(data.categories)
+            .enter()
+            .append("rect")
+                .attr("x", function(d) { return xScale(d.name);})
+                .attr("y", function(d) { return yScale(d.score_out_of_10); })
+                .attr("width", xScale.bandwidth())
+                .attr("height", function(d) { return height - margin.bottom - yScale(d.score_out_of_10);})
+                .attr("stroke","#ff7006")
+                .attr("fill", "#ffbe92");
 
                 });
                             
