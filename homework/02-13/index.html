@@ -36,9 +36,9 @@ position: relative;
 
         var margin = {
         top: 50,
-        right: 50,
+        right: 100,
         bottom: 150,
-        left: 150
+        left: 100
       };
 
         
@@ -47,11 +47,10 @@ position: relative;
         .attr("height", height);
 
         var xScale = d3.scaleBand()
-        .domain("Housing","Cost of Living","Healthcare","Education", "Environmental Quality","Economy", "Taxation"    )
+        .domain(["Housing","Cost of Living","Startups","Healthcare","Venture Capital","Travel Connectivity","Business Freedom","Commute","Safety","Healthcare","Education", "Environmental Quality","Economy", "Taxation","Internet Access","Leisure \u0026 Culture","Tolerance","Outdoors"])
         .range([margin.left, width-margin.right])
-        .padding(0.2);
+        .padding(0.5);
         
-
 
         var yScale = d3.scaleLinear()
             .domain([0, 10])
@@ -60,7 +59,7 @@ position: relative;
         var xAxis = svg.append("g")
             .attr("class","axis")
             .attr("transform", `translate(0,${height-margin.bottom})`)
-            .call(d3.axisBottom().scale(xScale).tickFormat(d3.format("Y")));
+            .call(d3.axisBottom().scale(xScale));
 
         var yAxis = svg.append("g")
             .attr("class","axis")
@@ -94,6 +93,7 @@ position: relative;
                 .attr("height", function(d) { return height - margin.bottom - yScale(d.score_out_of_10);})
                 .attr("stroke","#ff7006")
                 .attr("fill", "#ffbe92");
+
 
                 });
                             
