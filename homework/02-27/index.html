@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+p1
+{font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-size: 24pt;
+left: 30%;
+top: 20px;
+text-align: center;
+position: relative;
+}
+
+body {
+        margin: 0;
+      }
+
+
+      #scaleRect {
+    stroke: black;
+  }
+    </style>
+  </head>
+  <body>
+    
+    <p1>Living Scores in San Francisco Bay Area</p1>
+    <svg id="chart">
+
+      
+      <g id="shapes"></g>
+      <g id="legend"></g>
+
+  </svg>
+
+
+
+    <script>
+      var URL = "https://api.teleport.org/api/urban_areas/slug:san-francisco-bay-area/scores/";
+
+      var data = [];
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+   
+      var svg = d3.select("#chart")
+        .attr("width", width)
+        .attr("height", height);
+
+        var margin = {
+        top: 50,
+        right: 200,
+        bottom: 100,
+        left: 50
+      };
+
+      var chartWidth = width - margin.left - margin.right;
+      var chartHeight = height - margin.top - margin.bottom;
+
+        var legendX = margin.left + chartWidth;
+        var legendY = margin.top;
+        var legendSize = 20;
+        var legendPadding = 10;
+
+        var legend = svg.select("#legend")
+        .attr("transform", "translate(" + legendX + ", " + legendY + ")");
+ 
+        var xScale = d3.scaleBand()
+        .domain(["Housing","Cost of Living","Startups","Healthcare","Venture Capital","Travel Connectivity","Business Freedom","Commute","Safety","Healthcare","Education", "Environmental Quality","Economy", "Taxation","Internet Access","Leisure \u0026 Culture","Tolerance","Outdoors"])
+        .range([margin.left, width-margin.right])
+        .padding(0.5);
+
+        function fetchData() {
+
+        d3.json(URL, function(error, data) {
+
+
+
+      var legendData = data.categories.map(function(d) {
+            return d.score_out_of_10;
+            });
+
+
+      legendData = legendData.filter(function(d, i) {
+          return legendData.indexOf(d) === i;
+      })
+      .sort(function(a, b) {
+          return b - a;
+      });
+
+      var maximum = 10;
+
+
+    
+        var barColor = d3.scaleSequential(d3.interpolateViridis)
+          .domain([0, 10]);
+
+        var legendRects = legend.selectAll("rect")
+          .data(legendData);
+
+        var legendRectsEnter = legendRects.enter().append("rect");
+
+        legendRects.merge(legendRectsEnter)
+        .attr("x", 0)
+        .attr("y", function(d, i) {
+            return i * legendSize + i * legendPadding;
+        })
+        .attr("fill", barColor)
+        .attr("width", legendSize)
+        .attr("height", legendSize);
+
+        var legendTexts = legend.selectAll("text")
+        .data(legendData);
+
+        var legendTextsEnter = legendTexts.enter().append("text")
+        .attr("baseline-shift", "-100%");
+
+        legendTexts.merge(legendTextsEnter)
+        .attr("x", legendPadding + legendSize + legendPadding / 2)
+        .attr("y", function(d, i) {
+            return i * legendSize + i * 10;
+        })
+        .text(function(d) {
+            return d;
+        });
+
+
+        var yScale = d3.scaleLinear()
+            .domain([0, 10])
+            .range([height-margin.bottom, margin.top]);
+
+        var xAxis = svg.append("g")
+            .attr("class","axis")
+            .attr("transform", `translate(0,${height-margin.bottom})`)
+            .call(d3.axisBottom().scale(xScale));
+
+        var yAxis = svg.append("g")
+            .attr("class","axis")
+            .attr("transform", `translate(${margin.left},0)`)
+            .call(d3.axisLeft().scale(yScale));
+
+        var xAxisLabel = svg.append("text")
+        .attr("class","axisLabel")
+        .attr("x", width/2 - margin.left)
+        .attr("y", height-margin.bottom/2)
+        .attr("font-family","Gill Sans")
+        .attr("font-size", "16pt")
+        .text("Name");
+
+        var yAxisLabel = svg.append("text")
+            .attr("class","axisLabel")
+            .attr("transform","rotate(-90)")
+            .attr("x",-height/2)
+            .attr("y",margin.left/2)
+            .attr("font-family","Gill Sans")
+            .attr("font-size", "16pt")
+            .text("Score");
+        
+     
+
+        var bar = svg.select("#shapes").selectAll("rect")
+            .data(data.categories)
+            .enter()
+            .append("rect")
+                .attr("x", function(d) { return xScale(d.name);})
+                .attr("y", function(d) { return yScale(d.score_out_of_10); })
+                .attr("width", xScale.bandwidth())
+                .attr("height", function(d) { return height - margin.bottom - yScale(d.score_out_of_10);})
+                .attr("stroke","#ff7006")
+                .attr("fill", function(d) {
+                return barColor(d.score_out_of_10);
+            });
+              
+
+
+
+                });
+                            
+
+      }
+
+      fetchData();
+    
+    </script>
+
+  </body>
+</html>

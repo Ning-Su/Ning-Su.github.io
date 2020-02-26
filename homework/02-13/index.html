@@ -92,7 +92,7 @@ position: relative;
                 .attr("width", xScale.bandwidth())
                 .attr("height", function(d) { return height - margin.bottom - yScale(d.score_out_of_10);})
                 .attr("stroke","#ff7006")
-                .attr("fill", "#ffbe92");
+                .attr("fill", function(d) { return (d.color); });
 
 
                 });
