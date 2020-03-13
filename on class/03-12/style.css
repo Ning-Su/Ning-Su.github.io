@@ -1,0 +1,50 @@
+
+body {
+    margin: 0;
+  }
+  
+  h1 {
+    font-family: "Comic Sans MS";
+    text-align: center;
+  }
+
+ 
+  #banner {
+    background-color: black;
+    background-position: 50% 100%;
+    background-size: cover;
+    color:white;
+    padding: 20vh 20px;
+    text-align: center;
+    text-shadow: 0 5px 5px black;
+  }
+
+  .section {
+    display: flex;
+    padding: 50px;
+  }
+  
+  .section p {
+    flex: 1;
+  }
+  
+  .section svg {
+    border: 1px solid red;
+    flex: 2;
+    height: 300px;
+    margin: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .section {
+      flex-direction: column;
+    }
+    .section svg {
+      flex: none;
+    }
+  }
+
+  #tooltip {
+    display: none;
+    position: absolute;
+  }
