@@ -1,52 +1,22 @@
 
-body {
-    margin: 0;
-  }
-  
-  h1 {
-    font-family: Montserrat, sans-serif;
-    text-align: center;
-  }
-
- 
-  #banner {
-    background-color: black;
-    background-position: 50% 100%;
-    background-size: cover;
-    color:white;
-    padding: 20vh 20px;
-    text-align: center;
-    text-shadow: 0 5px 5px black;
-  }
-
-  .section {
-    display: flex;
-    padding: 50px;
-  }
-  
-  .section p {
-    flex: 1;
-  }
-  
-  .section svg {
-    border: 1px solid red;
-    flex: 2;
-    height: 300px;
-    margin: 20px;
-  }
-
-  @media (max-width: 600px) {
-    .section {
-      flex-direction: column;
-    }
-    .section svg {
-      flex: none;
-    }
+  body {font-family: "Times New Roman", Georgia, Serif;
+    margin: 0;}
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display";
+    letter-spacing: 5px;
+    color: white;
   }
 
   #tooltip {
     display: none;
     position: absolute;
   }
-  .w3-row-padding img {margin-bottom: 12px}
-  .w3-sidebar {width: 120px;background: #222;}
+
+  h10 {
+
+    font-family: "Playfair Display";
+    letter-spacing: 5px;
+    color:white;
+
+  }
+
