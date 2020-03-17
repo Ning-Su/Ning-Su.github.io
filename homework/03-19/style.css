@@ -4,7 +4,7 @@ body {
   }
   
   h1 {
-    font-family: "Comic Sans MS";
+    font-family: Montserrat, sans-serif;
     text-align: center;
   }
 
@@ -48,3 +48,5 @@ body {
     display: none;
     position: absolute;
   }
+  .w3-row-padding img {margin-bottom: 12px}
+  .w3-sidebar {width: 120px;background: #222;}
