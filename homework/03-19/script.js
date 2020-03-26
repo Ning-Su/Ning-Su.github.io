@@ -35,7 +35,7 @@
 
        countries.enter().append("path")
        .attr("d", path)
-       .attr("fill", "green")
+       .attr("fill", "grey")
        .attr("stroke","orange");
 
        var points = [
