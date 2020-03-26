@@ -1,9 +1,6 @@
 
 header, body{font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
 
-
-
-
   #tooltip {
     display: none;
     position: absolute;
@@ -11,3 +8,8 @@ header, body{font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', 
 
 p {font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
    }
+
+  #viz {
+    width: 99.6%;
+    position: relative;
+  }
