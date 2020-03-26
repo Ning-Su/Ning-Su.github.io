@@ -16,7 +16,9 @@
  .attr("width", width)
  .attr("height", height);
 
-   var map = svg.select("#map");
+   var map = svg.select("#map")
+   .attr("width", 100)
+   ;
 
 
    d3.json("nys.json", function(error, geoJSON) {
