@@ -1,0 +1,43 @@
+
+header, body{font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+
+  #tooltip {
+    display: none;
+    position: absolute;
+  }
+
+p {font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   }
+
+  #viz {
+    width: 90%;
+    position: relative;
+  }
+
+  #slider{
+    orientation: vertical;
+    position: relative;
+    padding: 20px;
+    width: 90%;
+    left: 70%;
+    top: 0%;
+  }
+
+  .section {
+    display: flex;
+    position: relative;
+  }
+  
+  .section #slider {
+    flex: 0.1;
+    orientation:vertical;
+  }
+  
+  .section #viz {
+   
+    flex: 2;
+    
+  }
+
+
+

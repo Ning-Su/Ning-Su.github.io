@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>NYC Wildfire Report</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" charset="utf-8">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+  </head>
+
+
+
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-padding w3-card" style="letter-spacing:4px;">
+    <a href="#home" class="w3-bar-item w3-button">NYS Wildland Fire</a>
+
+    <div class="w3-right w3-hide-small">
+      <a href="#menu" class="w3-bar-item w3-button">Introduction</a>
+      <a href="#contact" class="w3-bar-item w3-button">News</a>
+      <a href="#map" class="w3-bar-item w3-button">Map</a>
+    </div>
+  </div>
+</div>
+
+
+<header class="w3-display-container w3-content w3-wide" style="max-width:1800px;min-width:800px" id="home">
+  <img class="w3-image" src="images/3.jpg" alt="Hamburger Catering" width="1800" height="1000">
+
+  <div class="w3-display-bottomleft w3-padding-large w3-opacity w3-text-white">
+    <h10 class="w3-xxlarge">Wildfire</h10>
+  </div>
+  
+</header>
+
+
+<body>
+
+<div class="w3-content w3-black w3-padding-large" style="max-width:1800px" >
+
+
+
+  <div class="w3-row w3-padding-64" id="menu">
+    <div class="w3-col l6 w3-padding-large w3-hide-small">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001350.896509433!2d-78.01266755697748!3d42.724748181520944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York!5e0!3m2!1sen!2sus!4v1584421282732!5m2!1sen!2sus" width="750" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+     </div>
+
+    <div class="w3-col m6 w3-padding-large">
+      <h1 class="w3-center">Introduction</h1><br>
+      <h5 class="w3-center">Introduction of New York State</h5>
+      <p class="w3-large w3-text-light-grey">New York State is a state located in the Northeastern United States, which was one of the original thirteen colonies that formed the United States. With an estimated 19.45 million residents in 2019, it is the fourth most populous state. Two-thirds of the state's population lives in the New York metropolitan area (nearly 40% on Long Island). The state and city were both named for the 17th-century Duke of York, the future King James II of England. With an estimated population of 8.39 million in 2018, the New York metropolitan area is one of the most populous in the world. New York City is a global city, home to the United Nations Headquarters, and has been described as the cultural, financial, and media capital of the world, as well as the world's most economically powerful city. </p>
+      <p class="w3-large w3-text-grey w3-hide-medium">Source from: https://en.wikipedia.org/wiki/New_York_(state)</p>
+    </div>
+  </div>
+  
+  <hr>
+  
+
+  <div class="w3-row w3-padding-64" id="contact">
+    <div class="w3-col l6 w3-padding-large">
+      <h1 class="w3-center">News </h1><br>
+      <h5 class="w3-center">Wildfire News in New York State</h5>
+      <p class="w3-large w3-text-light-grey">Wildfire is defined as an uncontrolled fire spreading through natural or unnatural vegetation that often has the potential to threaten lives and property if not contained. Wildfire in New York is based on the same science and environmental factors as any wildfire in the world. Fuels, weather and topography are the primary factors that determine the natural spread and destruction of every wildfire. According to Forest Ranger Division wildfire occurrence data from 1993 through 2017, 95% of wildfires in New York are caused by humans while lightning is responsible for 5%. Debris burning accounts for 33% of all wildfires, incendiary fires account for 16%, campfires cause 16% and children are responsible for 4%. Smoking, equipment, railroads and 6miscellaneous causes contribute to the remaining 25% of wildfires. </p>
+      <p class="w3-large w3-text-grey w3-hide-medium">Source from: https://www.dec.ny.gov/lands/42378.html</p>
+    </div>
+    
+    <div class="w3-col l6 w3-padding-large">
+      <iframe width="750" height="450" src="https://www.youtube.com/embed/QknZ0j7j8mg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+  </div>
+
+  <hr>
+
+
+  <div class="w3-row w3-padding-64" id="map">
+  <div class="w3-col  w3-padding-large">
+  <h1 class="w3-center">Map</h1><br>
+  <h5 class="w3-center">NYS Forest Ranger Wildland Fire Reporting</h5>
+  <p class="w3-large w3-text-light-grey">The dataset includes details for each wildland fire recorded between 1975 and  2007 under the jurisdiction of the DEC NYS Forest Rangers. Two buttons on the left divide the land of ownership into private Property， Forest Preserve and Other. The vertical slider on the right of the map allows people choose the start date of different fires each year. Circles with different colors on the map show the different causes of wildfire, and the legend below the map shows the corresponding description. The size of the circle shows the total size of the fire in acres in each county of New York State. When people hover the mouse on each circle, it will shows the description about Incident Name, County Name, and Fuel Model. </p>
+  <p class="w3-large w3-text-grey w3-hide-medium">Data Source: https://www.kaggle.com/new-york-state/nys-forest-ranger-wildland-fire-reporting</p>
+</div>
+<br>
+
+<div class="w3-col  w3-padding-large " >
+  <button id="updateM" >Private Property</button>
+  <button id="updateA">Forest Preserve</button>
+  <button id="updateA">Other</button>
+</div>
+
+
+
+  <div class="w3-col  w3-padding-large section ">
+  <svg id="viz" >
+    <rect id="ocean" fill="lightblue" />
+    <g id="map"></g> 
+    <g id="shapes"></g>
+    <g id="legend"></g>
+</svg>
+
+<div id="slider">
+  <input id="selectYEAR" type="range" step=1>
+</div>
+
+</div>
+
+<div class="w3-col  w3-padding-large">
+
+
+
+</div>
+
+</div>
+
+<hr> 
+
+
+</body>
+
+
+
+<footer class="w3-center">
+  <p> Final Project - ARTG5430<br>Designed by <a href="https://ningsu0821.com"  target="_blank" class="w3-hover-text-red">Ning Su</a></p>
+</footer>
+
+
+
+<div id="tooltip"></div>
+<div id="tooltipMAP"></div>
+<script src="banner.js"></script>
+<script src="./chart1.js"></script>
+<script src="./script.js"></script>
+</div>
+  </body>
+</html>
