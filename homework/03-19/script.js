@@ -16,9 +16,8 @@
  .attr("width", width)
  .attr("height", height);
 
-   var map = svg.select("#map")
-   .attr("width", 100)
-   ;
+   var map = svg.select("#map");
+
 
 
    d3.json("nys.json", function(error, geoJSON) {
@@ -27,6 +26,7 @@
 
        var projection = d3.geoMercator()
        .fitSize([width, height], geoJSON);
+ 
 
 
        var path = d3.geoPath()

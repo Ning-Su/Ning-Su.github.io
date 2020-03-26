@@ -37,5 +37,10 @@ p {font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
    
     flex: 2;
     
-  
+  }
+
+  #map{
+    position: relative;
+    width: 10%;
+    left: -100px;
   }
