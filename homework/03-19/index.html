@@ -43,7 +43,7 @@
 
 
   <div class="w3-row w3-padding-64" id="menu">
-    <div class="w3-col m6 w3-padding-large w3-hide-small">
+    <div class="w3-col l6 w3-padding-large w3-hide-small">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001350.896509433!2d-78.01266755697748!3d42.724748181520944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York!5e0!3m2!1sen!2sus!4v1584421282732!5m2!1sen!2sus" width="750" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
      </div>
 
@@ -74,20 +74,44 @@
 
   <hr>
 
+
   <div class="w3-row w3-padding-64" id="map">
   <div class="w3-col  w3-padding-large">
   <h1 class="w3-center">Map</h1><br>
-  <h5 class="w3-center">Wildfire News in New York State</h5>
-  <p class="w3-large w3-text-light-grey">Wildfire is defined as an uncontrolled fire spreading through natural or unnatural vegetation that often has the potential to threaten lives and property if not contained. Wildfire in New York is based on the same science and environmental factors as any wildfire in the world. Fuels, weather and topography are the primary factors that determine the natural spread and destruction of every wildfire. According to Forest Ranger Division wildfire occurrence data from 1993 through 2017, 95% of wildfires in New York are caused by humans while lightning is responsible for 5%. Debris burning accounts for 33% of all wildfires, incendiary fires account for 16%, campfires cause 16% and children are responsible for 4%. Smoking, equipment, railroads and 6miscellaneous causes contribute to the remaining 25% of wildfires. </p>
-  <p class="w3-large w3-text-grey w3-hide-medium">Data source: https://www.dec.ny.gov/lands/42378.html</p>
+  <h5 class="w3-center">NYS Forest Ranger Wildland Fire Reporting</h5>
+  <p class="w3-large w3-text-light-grey">The dataset includes details for each wildland fire recorded between 1975 and  2007 under the jurisdiction of the DEC NYS Forest Rangers. Two buttons on the left divide the land of ownership into Private Property， Forest Preserve and Other. The vertical slider on the right of the map allows people choose the start date of different fires each year. Circles with different colors on the map show the different causes of wildfire, and the legend below the map shows the corresponding description. The size of the circle shows the total size of the fire in acres in each county of New York State. When people hover the mouse on each circle, it will shows the description about Incident Name, County Name, and Fuel Model. </p>
+  <p class="w3-large w3-text-grey w3-hide-medium">Data source: https://www.kaggle.com/new-york-state/nys-forest-ranger-wildland-fire-reporting</p>
 </div>
 <br>
-  <div class="w3-col  w3-padding-large w3-padding-64">
-  <svg id="viz" >
-    <rect id="ocean" fill="cornflowerblue" />
-    <g id="map" ></g>
-</svg>
+
+<div class="w3-col  w3-padding-large " >
+  <button id="updateM">Private Property</button>
+  <button id="updateA">Forest Preserve</button>
+  <button id="updateA">Other</button>
 </div>
+
+
+
+  <div class="w3-col  w3-padding-large section ">
+  <svg id="viz" >
+    <rect id="ocean" fill="lightblue" />
+    <g id="map"></g> 
+    <g id="shapes"></g>
+    <g id="legend"></g>
+</svg>
+
+<div id="slider">
+  <input id="selectYEAR" type="range" step=1>
+</div>
+
+</div>
+
+<div class="w3-col  w3-padding-large">
+
+
+
+</div>
+
 </div>
 
 <hr> 
@@ -104,6 +128,7 @@
 
 
 <div id="tooltip"></div>
+<div id="tooltipMAP"></div>
 <script src="banner.js"></script>
 <script src="./chart1.js"></script>
 <script src="./script.js"></script>
