@@ -2,7 +2,7 @@
 
     d3.csv("NYS wildland fire.csv", function(error, data) {
         var WildfireData = data;
-        console.log(data);
+    
         });
 
     var width = window.innerWidth;
@@ -26,8 +26,6 @@
        var projection = d3.geoMercator()
        .fitSize([width, height], geoJSON);
 
-       // var projection = d3.geoMiller()
-       // .fitSize([width, height], geoJSON);
 
        var path = d3.geoPath()
        .projection(projection);
