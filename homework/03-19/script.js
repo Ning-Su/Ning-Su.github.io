@@ -5,7 +5,7 @@
     
         });
 
-    var width = window.innerWidth;
+    var width = window.innerWidth ;
     var height = window.innerHeight;
 
    var svg = d3.select("#viz")
@@ -16,16 +16,15 @@
  .attr("width", width)
  .attr("height", height);
 
-   var map = svg.select("#map");
-
-
+   var map = svg.select("#map")
+  
 
    d3.json("nys.json", function(error, geoJSON) {
 
 
 
        var projection = d3.geoMercator()
-       .fitSize([width, height], geoJSON);
+       .fitSize([width-1000, height-1000], geoJSON);
  
 
 

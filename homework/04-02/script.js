@@ -5,8 +5,8 @@
     
         });
 
-    var width = window.innerWidth;
-    var height = window.innerHeight;
+    var width = window.innerWidth-100;
+    var height = window.innerHeight-100;
 
    var svg = d3.select("#viz")
    .attr("width", width)
@@ -25,7 +25,7 @@
 
 
        var projection = d3.geoMercator()
-       .fitSize([width, height], geoJSON);
+       .fitSize([width/2, height/2], geoJSON);
  
 
 
