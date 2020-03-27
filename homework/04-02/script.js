@@ -28,7 +28,6 @@
 
        var projection = d3.geoMercator()
        .transalte()
-
        .scale(500);
  
 
