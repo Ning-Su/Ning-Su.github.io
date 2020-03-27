@@ -8,6 +8,8 @@
     var width = 500;
     var height = 800;
 
+    console.log("hello");
+
     console.log(width);
 
    var svg = d3.select("#viz")
@@ -27,7 +29,7 @@
 
 
        var projection = d3.geoMercator()
-       .transalte()
+       .transalte([width, height])
        .scale(500);
  
 
