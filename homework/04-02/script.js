@@ -28,8 +28,8 @@
         var legendSize = 20;
         var legendPadding = 10;
 
-        var legend = svg.select("#legend")
-        .attr("transform", "translate(" + legendX + ", " + legendY + ")");
+    var legend = svg.select("#legend")
+    .attr("transform", "translate(" + legendX + ", " + legendY + ")");
 
 
    d3.json("nys.json", function(error, geoJSON) {
@@ -37,7 +37,6 @@
         var legendData = data.map(function(d) {
             return d.Cause;
             });
-
 
 
     var legendData1 = legendData.filter(function(d) {
@@ -49,10 +48,10 @@
     var legendData3 = legendData.filter(function(d) {
             return d.Cause ==="Debris Burning";});
 
-    var legendData1 = legendData.filter(function(d) {
+    var legendData4 = legendData.filter(function(d) {
                 return d.Cause ==="Lightning";});
     
-     var legendData2 = legendData.filter(function(d) {
+     var legendData5 = legendData.filter(function(d) {
                 return d.Cause ==="Equipment";});
     
      var legendData3 = legendData.filter(function(d) {
@@ -141,7 +140,7 @@
        
       
 
-       FireData = FireData.sort(function(a,b) { return a.YEAR - b.YEAR; });
+    FireData = FireData.sort(function(a,b) { return a.YEAR - b.YEAR; });
 
 
 
@@ -162,7 +161,7 @@
         .attr("font-family","Verdana,sans-serif")
         .attr("font-size","50px")
         .attr("fill","#E2E2E2")
-        .attr("font-weight","700")
+        .attr("font-weight","200")
         .text(selectedYEAR);
 
 
