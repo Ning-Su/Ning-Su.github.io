@@ -54,22 +54,22 @@
      var legendData5 = legendData.filter(function(d) {
                 return d.Cause ==="Equipment";});
     
-     var legendData3 = legendData.filter(function(d) {
-                return d.Cause ==="Incendiary";});
+     var legendData6 = legendData.filter(function(d) {
+                return d.ause ==="Incendiary";});
         
-    var legendData2 = legendData.filter(function(d) {
+    var legendData7 = legendData.filter(function(d) {
         return d.Cause ==="Power line";});
 
-    var legendData3 = legendData.filter(function(d) {
+    var legendData8 = legendData.filter(function(d) {
             return d.Cause ==="Smoking";});
 
-    var legendData3 = legendData.filter(function(d) {
+    var legendData9 = legendData.filter(function(d) {
                 return d.Cause ==="Miscellaneous";});
         
-    var legendData2 = legendData.filter(function(d) {
+    var legendData10 = legendData.filter(function(d) {
         return d.Cause ==="Children";});
 
-    var legendData3 = legendData.filter(function(d) {
+    var legendData11 = legendData.filter(function(d) {
             return d.Cause ==="Structure";});
             
 
