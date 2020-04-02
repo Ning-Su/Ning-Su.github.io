@@ -74,7 +74,7 @@
             
 
         
-    var barColor ={
+    var barColor = {
 
         };
 
