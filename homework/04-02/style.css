@@ -7,37 +7,50 @@ header, body{font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', 
   }
 
 p {font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
    }
 
   #viz {
-    width: 90%;
-    position: relative;
-  }
-
-  #slider{
-    orientation: vertical;
-    position: relative;
-    padding: 20px;
-    width: 90%;
-    left: 70%;
-    top: 0%;
-  }
-
-  .section {
-    display: flex;
-    position: relative;
-  }
-  
-  .section #slider {
-    flex: 0.1;
-    orientation:vertical;
-  }
-  
-  .section #viz {
    
-    flex: 2;
-    
+    position: relative;
   }
 
-
+  .slidecontainer {
+    width: 100%;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    width: 84.2%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+   
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border-radius: 50%;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background:red;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background:red;
+    cursor: pointer;
+  }
 
