@@ -26,12 +26,15 @@ d3.queue()
 
 
    var legendX = width+20;
-        var legendY = 100;
+        var legendY = height-300;
         var legendSize = 20;
         var legendPadding = 10;
 
     var legend = svg.select("#legend")
     .attr("transform", "translate(" + legendX + ", " + legendY + ")");
+
+
+
 
         // var legendData = data.map(function(d) {
         //     return d.Cause;
@@ -39,21 +42,31 @@ d3.queue()
 
             var entries = d3.nest()
             .key(function(d) { return d.Cause; })
-            .key(function(d) { return d.Acreage; })
+        
             .entries(FireData);
+
+
 
           console.log(entries);
 
-            // legendData = legendData.filter(function(d, i) {
-            //     return legendData.indexOf(d) === i;
-            // })
-            // .sort(function(a, b) {
-            //     return b - a;
-            // });
+        //   entries = entries.filter(function(d, i) {
+        //         return entries.indexOf(d) === i;
+        //     })
+        //     .sort(function(a, b) {
+        //         return b - a;
+        //     });
 
+        // entries = entries.filter(function(d){
+
+        //     if (entries === "Campfire") {
+        //         return "blue"
+        //     }
+        //     else {
+        //         return "#ff00f5"
+        //     }});
 
         
-    var barColor = d3.scaleSequential(d3.interpolateViridis)
+    var CircleColor = d3.scaleSequential(d3.interpolateViridis)
     .domain([0, 10]);
 
 
@@ -67,7 +80,7 @@ d3.queue()
       .attr("y", function(d, i) {
           return i * legendSize + i * legendPadding;
       })
-      .attr("fill", barColor)
+      .attr("fill", CircleColor)
       .attr("width", legendSize)
       .attr("height", legendSize);
 
@@ -159,7 +172,7 @@ console.log(NYS);
                 .attr("opacity",0.8)
                 .attr("fill", 
                 function(d) {
-                    return barColor(d.Cause)})
+                    return CircleColor(d.Cause)})
         .merge(c)
             .transition(1000)
             .attr("cx", function(d){
@@ -172,7 +185,7 @@ console.log(NYS);
             .attr("opacity",0.8)
             .attr("fill", 
             function(d) {
-                return barColor(d.Cause)})
+                return CircleColor(d.Cause)})
         c.exit()
             .transition()
             .duration(1000)
