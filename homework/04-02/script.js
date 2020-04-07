@@ -45,8 +45,6 @@ d3.queue()
         
             .entries(FireData);
 
-
-
           console.log(entries);
 
         //   entries = entries.filter(function(d, i) {
@@ -56,14 +54,17 @@ d3.queue()
         //         return b - a;
         //     });
 
+
         // entries = entries.filter(function(d){
 
         //     if (entries === "Campfire") {
         //         return "blue"
         //     }
         //     else {
-        //         return "#ff00f5"
+        //         
         //     }});
+
+
 
         
     var CircleColor = d3.scaleSequential(d3.interpolateViridis)
