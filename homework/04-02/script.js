@@ -1,86 +1,64 @@
 
+d3.queue()
+    .defer(d3.csv, "NYS wildland fire.csv")
+    .defer(d3.json, "nys.json")   
+    .awaitAll(function(error, results) {     
+        if (error) throw error;     
+        var FireData = results[0];     
+        var NYS = results[1];   
 
-    d3.csv("NYS wildland fire.csv", function(error, data) {
-        var FireData = data;
-    
-        });
-
-        var width = window.innerWidth;
-        var height = window.innerHeight;
 
 
-        
-        
-   var svg = d3.select("#viz")
-   .attr("width", width-350)
-   .attr("height", height-170)
-  ; 
 
-   svg.select("#ocean")
-    .attr("width", width-100)
-    .attr("height", height-200);
+    console.log(FireData);
 
-   var map = svg.select("#map")
-   ;
+    var width = document.querySelector("#chart").clientWidth;
+    var height = document.querySelector("#chart").clientHeight;
 
-   var legendX = width-100;
-        var legendY = height-300;
+    console.log(width);
+    console.log(height);
+    var svg = d3.select("#chart")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+
+
+
+   var legendX = width+20;
+        var legendY = 100;
         var legendSize = 20;
         var legendPadding = 10;
 
     var legend = svg.select("#legend")
     .attr("transform", "translate(" + legendX + ", " + legendY + ")");
 
+        // var legendData = data.map(function(d) {
+        //     return d.Cause;
+        //     });
 
-   d3.json("nys.json", function(error, geoJSON) {
+            var entries = d3.nest()
+            .key(function(d) { return d.Cause; })
+            .key(function(d) { return d.Acreage; })
+            .entries(FireData);
 
-        var legendData = data.map(function(d) {
-            return d.Cause;
-            });
+          console.log(entries);
 
+            // legendData = legendData.filter(function(d, i) {
+            //     return legendData.indexOf(d) === i;
+            // })
+            // .sort(function(a, b) {
+            //     return b - a;
+            // });
 
-    var legendData1 = legendData.filter(function(d) {
-            return d.Cause ==="Campfire";});
-
-    var legendData2 = legendData.filter(function(d) {
-            return d.Cause ==="Prescribed Fire";});
-
-    var legendData3 = legendData.filter(function(d) {
-            return d.Cause ==="Debris Burning";});
-
-    var legendData4 = legendData.filter(function(d) {
-                return d.Cause ==="Lightning";});
-    
-     var legendData5 = legendData.filter(function(d) {
-                return d.Cause ==="Equipment";});
-    
-     var legendData6 = legendData.filter(function(d) {
-                return d.ause ==="Incendiary";});
-        
-    var legendData7 = legendData.filter(function(d) {
-        return d.Cause ==="Power line";});
-
-    var legendData8 = legendData.filter(function(d) {
-            return d.Cause ==="Smoking";});
-
-    var legendData9 = legendData.filter(function(d) {
-                return d.Cause ==="Miscellaneous";});
-        
-    var legendData10 = legendData.filter(function(d) {
-        return d.Cause ==="Children";});
-
-    var legendData11 = legendData.filter(function(d) {
-            return d.Cause ==="Structure";});
-            
 
         
-    var barColor = {
-
-        };
+    var barColor = d3.scaleSequential(d3.interpolateViridis)
+    .domain([0, 10]);
 
 
         var legendRects = legend.selectAll("rect")
-        .data(legendData);
+        .data(entries);
 
       var legendRectsEnter = legendRects.enter().append("rect");
 
@@ -94,7 +72,7 @@
       .attr("height", legendSize);
 
       var legendTexts = legend.selectAll("text")
-      .data(legendData);
+      .data(entries);
 
       var legendTextsEnter = legendTexts.enter().append("text")
       .attr("baseline-shift", "-100%");
@@ -111,40 +89,32 @@
 
 
        var projection = d3.geoMercator()
-       .fitSize([width/1.4, height/1.4], geoJSON)
-      
-       ;
+       .fitSize([width, height], NYS)
+  
 
-       var path = d3.geoPath()
-       .projection(projection);
 
-       var countries = map.selectAll("path")
-       .data(geoJSON.features);
 
-       countries.enter().append("path")
-       .attr("d", path)
-       .attr("fill", "white")
-       .attr("stroke","red");
+       var geoPath = d3.geoPath().projection(projection);
 
-       
-       var zoom = d3.zoom()
-       .translateExtent([[0, 0], [width, height]])
-       .scaleExtent([1, 1])
-       .on("zoom", zoomed);
+  
+console.log(NYS);
 
-       function zoomed() {
-       map.attr("transform", d3.event.transform);
-       }
+       svg.selectAll( "path" )
+       .data(NYS.features)
+       .enter()
+       .append( "path" )
+       .attr( "fill", "white" )
+       .attr( "stroke", "black")
+       .attr(  "stroke-width","1")
+       .attr( "d", geoPath);
 
-       svg.call(zoom);
-       
-      
+ 
 
     FireData = FireData.sort(function(a,b) { return a.YEAR - b.YEAR; });
 
 
 
-    var slider = d3.select("#selectYEAR");
+    var slider = d3.select("#selectedYEAR");
 
     slider
         .property("min", FireData[0].YEAR)
@@ -156,18 +126,18 @@
 
     var YEARLabel = svg.append("text")
         .attr("class","YEARLabel")
-        .attr("x",320)
-        .attr("y", height - 275)
-        .attr("font-family","Verdana,sans-serif")
-        .attr("font-size","50px")
-        .attr("fill","#E2E2E2")
-        .attr("font-weight","200")
+        .attr("x",width-72)
+        .attr("y", height-998)
+        .attr("font-family","Gill Sans")
+        .attr("font-size","32px")
+        .attr("fill","#d3d3d3")
+        .attr("font-weight","400")
         .text(selectedYEAR);
 
 
     var rScale = d3.scaleSqrt()
-        .domain([0,2000])
-        .range([0,25]);
+        .domain([0,700])
+        .range([0,100]);
 
     function updateMap(YEAR) {
         var filtered_data = FireData.filter(function(d){
@@ -175,7 +145,7 @@
         });
 
 
-        var c = svg.selectAll("circle")
+        var c = svg.select("#shapes").selectAll("circle")
 
            .data(filtered_data, function(d){return d.id});
         c.enter().append("circle")
@@ -186,8 +156,9 @@
                 var proj = projection([d.Longitude, d.Latitude]);
                 return proj[1];
             }).attr("r",0)
-                .attr("opacity",0.7)
-                .attr("fill", function(d) {
+                .attr("opacity",0.8)
+                .attr("fill", 
+                function(d) {
                     return barColor(d.Cause)})
         .merge(c)
             .transition(1000)
@@ -198,31 +169,33 @@
                 var proj = projection([d.Longitude, d.Latitude]);
                 return proj[1];
             }).attr("r",function(d){return rScale(d.Acreage)})
-            .attr("opacity",0.7)
-            .attr("fill", function(d) {
+            .attr("opacity",0.8)
+            .attr("fill", 
+            function(d) {
                 return barColor(d.Cause)})
         c.exit()
             .transition()
             .duration(1000)
             .attr("r",0)
             .remove();
+
         YEARLabel.text(YEAR);
         svg.selectAll("circle")
             .on("mouseover",function(d){
-                var cx = +d3.select(this).attr("cx") + 15;
+                var cx = +d3.select(this).attr("cx") + 30;
                 var cy = +d3.select(this).attr("cy") - 15;
                 tooltip.style("visibility","visible")
-                    .style("left", cx + "px")
+                    .style("left", cx +"px")
                     .style("top", cy + "px")
-                    .html("Incident Name:" + d.IncidentName + "<br>" + "County:" + d.County + "<br>" + "NFFL Fuel Model:" + d.NFFL_Fuel_Model);
+                    .html("Acreage: " + d.Acreage + "<br>" +"Incident Name: " + d.IncidentName + "<br>" + "County: " + d.County + "<br>" + "NFFL Fuel Model:" + d.NFFL_Fuel_Model);
                 svg.selectAll("circle")
                     .attr("opacity",0.2);
                 d3.select(this)
-                    .attr("opacity",0.7);
+                    .attr("opacity",0.8);
 
             }).on("mouseout",function(){
                 tooltip.style("visibility","hidden")
-                    .attr("opacity",0.7);
+                    .attr("opacity",0.8);
             })
         }
 
@@ -240,17 +213,30 @@
     })
 
 
-
-
-
     var tooltip = d3.select("#chart")
     .append("div")
     .attr("class","tooltip")
 
 });
 
+function parseCSV(data) {
+    var d = {};
+  
+    d.STREET = data.STREET;
+    d.IncidentName = data.IncidentName;
+    d.County = data.County;
+    d.Latitude = +data.Latitude;
+    d.Longitude = +data.Longitude;
+    d.Acreage = +data["Acreage"];
+    d.date = new Date(data.Date);
+    d.YEAR = data.YEAR;
 
 
+        }
+
+
+
+ 
 
 
 
