@@ -177,8 +177,8 @@ console.log(legend);
         YEARLabel.text(YEAR);
         svg.selectAll("circle")
             .on("mouseover",function(d){
-                var cx = +d3.select(this).attr("cx") + 0;
-                var cy = +d3.select(this).attr("cy") - 0;
+                var cx = +d3.select(this).attr("cx") + 50;
+                var cy = +d3.select(this).attr("cy") - 10;
                 tooltip.style("visibility","visible")
                     .style("left", cx +"px")
                     .style("top", cy + "px")
@@ -211,7 +211,6 @@ console.log(legend);
     var tooltip = d3.select("#chart")
     .append("div")
     .attr("class","tooltip")
-
 });
 
 function parseCSV(data) {
