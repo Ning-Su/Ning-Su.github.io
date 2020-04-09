@@ -52,7 +52,9 @@ d3.queue()
 
 console.log(legend);
   
-        var colors = ["orange", "#f2b5c8", "red", "blue", "pink", "green", "yellow", "#81bffd", "#fd81bd", "#befd81", "#fd81ea", "#81fdf3", "#09433f"];
+        var colors = ["#262262","#662d91", "#9e1f63", "#ee2a7b",
+        "#be1e2d","#ed1c24", "#ef4136", "#f15a29", "#f7941d", "#fbb040", "#f9ed32", 
+        "#8dc63f", "#009444", ];
         var CircleColor = d3.scaleThreshold()
             .domain(Cause)
             .range(colors);
