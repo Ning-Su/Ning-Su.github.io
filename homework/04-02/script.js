@@ -85,40 +85,6 @@ console.log(legend);
             .text(o => o);
 
 
-    //     // var legendRects = legend.selectAll(".rect")
-    //     // .data(colors);
-  
-
-
-    //   var legendRectsEnter = legend
-    //   .data(colors)
-    //   .enter().append(".rect");
-
-    //   legendRects.merge(legendRectsEnter)
-    //   .attr("transform", function (d, i) {
-    //     return "translate(1250,"+(i*35)+")"
-    // })
-    //   .attr("fill", o=>o)
-    //   .attr("stroke-width","1")
-    //   .attr("width", legendSize)
-    //   .attr("height", legendSize);
-
-     
-
-
-
-    //   var legendTexts = legend.selectAll(".text")
-
-    //   .data(Causes);
-
-    //   var legendTextsEnter = legendTexts.enter().append(".text")
-    //   .attr("baseline-shift", "-100%");
-
-    //   legendTexts.merge(legendTextsEnter)
-    //   .attr("transform", function (d, i) {
-    //     return "translate(1280," + (i * 35+15) + ")"
-    // })
-    //   .text(o => o);
 
        var projection = d3.geoMercator()
        .fitSize([width, height], NYS)
@@ -211,8 +177,8 @@ console.log(legend);
         YEARLabel.text(YEAR);
         svg.selectAll("circle")
             .on("mouseover",function(d){
-                var cx = +d3.select(this).attr("cx") + 30;
-                var cy = +d3.select(this).attr("cy") - 15;
+                var cx = +d3.select(this).attr("cx") + 0;
+                var cy = +d3.select(this).attr("cy") - 0;
                 tooltip.style("visibility","visible")
                     .style("left", cx +"px")
                     .style("top", cy + "px")
