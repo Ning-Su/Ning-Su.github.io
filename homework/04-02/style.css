@@ -51,15 +51,17 @@ p {font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
   }
 
 #chart{
-  width:1200px;
-  height: 1100px;
+  position: relative;
+  top:0px;
+  width:1400px;
+  height: 1200px;
 }
 
 #selectedYEAR {
-  width:20%;
+  width:30%;
 position: relative;
-bottom: 1017px;
-left:78%;
+bottom: 500 px;
+left:1.5%;
 
 }
 
@@ -75,3 +77,5 @@ left:78%;
   padding: 5px;
   pointer-events: none;
 }
+
+

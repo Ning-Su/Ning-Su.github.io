@@ -1,4 +1,3 @@
-
 d3.queue()
     .defer(d3.csv, "NYS wildland fire.csv")
     .defer(d3.json, "nys.json")   
@@ -9,111 +8,121 @@ d3.queue()
 
 
 
-
-    console.log(FireData);
+        var Cause = [];
+        FireData.forEach(function (d, i) {
+            if (Cause.indexOf(d.Cause) == -1 && d.Cause!="") {
+                Cause.push(d.Cause);
+            }
+        });
+        console.log(Cause);
 
     var width = document.querySelector("#chart").clientWidth;
     var height = document.querySelector("#chart").clientHeight;
 
     console.log(width);
     console.log(height);
+
     var svg = d3.select("#chart")
-        .append("svg")
+        
         .attr("width", width)
         .attr("height", height);
 
 
+        var entries = d3.nest()
+        .key(function(d) { return d.Cause; })
+        .entries(FireData);
+
+      console.log(entries);
+
+      entries = entries.filter(function(d, i) {
+            return entries.indexOf(d) === i;
+        })
+        .sort(function(a, b) {
+            return b - a;
+        });
 
 
-   var legendX = width+20;
-        var legendY = height-300;
+// //    var legendX = width+20;
+// //         var legendY = height-100;
         var legendSize = 20;
-        var legendPadding = 10;
+//         var legendPadding = 10;
 
-    var legend = svg.select("#legend")
-    .attr("transform", "translate(" + legendX + ", " + legendY + ")");
+    var legend = svg.selectAll("#legend")
+    // .attr("transform", "translate(" + legendX + ", " + legendY + ")");
 
+console.log(legend);
+  
+        var colors = ["orange", "#f2b5c8", "red", "blue", "pink", "green", "yellow", "#81bffd", "#fd81bd", "#befd81", "#fd81ea", "#81fdf3", "#09433f"];
+        var CircleColor = d3.scaleThreshold()
+            .domain(Cause)
+            .range(colors);
 
+        legend
+       
+            .data(colors)
+            .enter()
+            .append("rect")
+            .attr("transform", function (d, i) {
+                return "translate(1250,"+(i*35)+")"
+            })
+            .attr("fill", o=>o)
+            .attr("y", "23px")
+            .attr("width", legendSize)
+            .attr("height", legendSize);
 
-
-        // var legendData = data.map(function(d) {
-        //     return d.Cause;
-        //     });
-
-            var entries = d3.nest()
-            .key(function(d) { return d.Cause; })
-        
-            .entries(FireData);
-
-          console.log(entries);
-
-        //   entries = entries.filter(function(d, i) {
-        //         return entries.indexOf(d) === i;
-        //     })
-        //     .sort(function(a, b) {
-        //         return b - a;
-        //     });
-
-
-        // entries = entries.filter(function(d){
-
-        //     if (entries === "Campfire") {
-        //         return "blue"
-        //     }
-        //     else {
-        //         
-        //     }});
-
-
-
-        
-    var CircleColor = d3.scaleSequential(d3.interpolateViridis)
-    .domain([0, 10]);
+        legend
+       
+            .data(Cause)
+            .enter()
+            .append("text")
+            .attr("fill", "white")
+            .attr("y", "23px")
+            .attr("transform", function (d, i) {
+                return "translate(1290," + (i * 35+15) + ")"
+            })
+            .text(o => o);
 
 
-        var legendRects = legend.selectAll("rect")
-        .data(entries);
-
-      var legendRectsEnter = legendRects.enter().append("rect");
-
-      legendRects.merge(legendRectsEnter)
-      .attr("x", 0)
-      .attr("y", function(d, i) {
-          return i * legendSize + i * legendPadding;
-      })
-      .attr("fill", CircleColor)
-      .attr("width", legendSize)
-      .attr("height", legendSize);
-
-      var legendTexts = legend.selectAll("text")
-      .data(entries);
-
-      var legendTextsEnter = legendTexts.enter().append("text")
-      .attr("baseline-shift", "-100%");
-
-      legendTexts.merge(legendTextsEnter)
-      .attr("x", legendPadding + legendSize + legendPadding / 2)
-      .attr("y", function(d, i) {
-          return i * legendSize + i * 10;
-      })
-      .text(function(d) {
-          return d;
-      });
+    //     // var legendRects = legend.selectAll(".rect")
+    //     // .data(colors);
+  
 
 
+    //   var legendRectsEnter = legend
+    //   .data(colors)
+    //   .enter().append(".rect");
+
+    //   legendRects.merge(legendRectsEnter)
+    //   .attr("transform", function (d, i) {
+    //     return "translate(1250,"+(i*35)+")"
+    // })
+    //   .attr("fill", o=>o)
+    //   .attr("stroke-width","1")
+    //   .attr("width", legendSize)
+    //   .attr("height", legendSize);
+
+     
+
+
+
+    //   var legendTexts = legend.selectAll(".text")
+
+    //   .data(Causes);
+
+    //   var legendTextsEnter = legendTexts.enter().append(".text")
+    //   .attr("baseline-shift", "-100%");
+
+    //   legendTexts.merge(legendTextsEnter)
+    //   .attr("transform", function (d, i) {
+    //     return "translate(1280," + (i * 35+15) + ")"
+    // })
+    //   .text(o => o);
 
        var projection = d3.geoMercator()
        .fitSize([width, height], NYS)
-  
-
-
 
        var geoPath = d3.geoPath().projection(projection);
-
-  
-console.log(NYS);
-
-       svg.selectAll( "path" )
+       svg.select("#map").selectAll( "path" )
        .data(NYS.features)
        .enter()
        .append( "path" )
@@ -128,22 +137,24 @@ console.log(NYS);
 
 
 
-    var slider = d3.select("#selectedYEAR");
+    var slider = d3.select("#selectedYEAR")
 
     slider
         .property("min", FireData[0].YEAR)
         .property("max", FireData[FireData.length-1].YEAR)
         .property("value", FireData[FireData.length-1].YEAR);
 
-    var selectedYEAR = slider.property("value");
+    var selectedYEAR = slider.property("value")
+    
 
 
     var YEARLabel = svg.append("text")
         .attr("class","YEARLabel")
-        .attr("x",width-72)
-        .attr("y", height-998)
+        .attr("x",width-1400)
+        .attr("y", height-1100)
+        .attr("opacity", 0.5)
         .attr("font-family","Gill Sans")
-        .attr("font-size","32px")
+        .attr("font-size","120px")
         .attr("fill","#d3d3d3")
         .attr("font-weight","400")
         .text(selectedYEAR);
@@ -172,8 +183,10 @@ console.log(NYS);
             }).attr("r",0)
                 .attr("opacity",0.8)
                 .attr("fill", 
-                function(d) {
-                    return CircleColor(d.Cause)})
+            function (d) {
+                console.log(d.Cause);
+                return CircleColor(d.Cause)
+            })
         .merge(c)
             .transition(1000)
             .attr("cx", function(d){
@@ -184,7 +197,7 @@ console.log(NYS);
                 return proj[1];
             }).attr("r",function(d){return rScale(d.Acreage)})
             .attr("opacity",0.8)
-            .attr("fill", 
+            .attr("fill",
             function(d) {
                 return CircleColor(d.Cause)})
         c.exit()
@@ -247,6 +260,14 @@ function parseCSV(data) {
 
 
         }
+
+
+
+ 
+
+
+
+
 
 
 
