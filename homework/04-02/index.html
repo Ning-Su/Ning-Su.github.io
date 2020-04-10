@@ -40,14 +40,7 @@
 
 <div class="w3-content w3-black w3-padding-large" style="max-width:1800px" >
 
-
-
   
-
-  
-
-  
-
   <div class="w3-row w3-padding-64" id="contact">
     <div class="w3-col l6 w3-padding-large">
       <h1 class="w3-center">News </h1><br>
@@ -65,8 +58,21 @@
   <hr>
 
 
-  <div class="w3-row w3-padding-64" id="mapp">
-  <div class="w3-col  w3-padding-large">
+  <div class="w3-row m6 w3-padding-64" id="mapp">
+
+    <div class="w3-col m6 w3-padding-large  "><br><br>
+      <div id="container">
+  
+        <svg id="chart"> 
+         <g id="map"></g>
+          <g id="shapes"></g>
+          <g id="legend"></g>  
+  </svg>
+      </div>
+  </div>
+
+
+  <div class="w3-col m6 w3-padding-large">
   <h1 class="w3-center">Map</h1><br>
   <h5 class="w3-center">NYS Forest Ranger Wildland Fire Reporting</h5>
   <p class="w3-large w3-text-light-grey">The dataset includes details for each wildland fire recorded between 1975 and  2007 under the jurisdiction of the DEC NYS Forest Rangers. The slider on the right top of the map allows people choose the start date of different wildfires each year. The size of the circle on the map show the acreage of each wildfire, and the legend with different colors below the slider shows the different causes of wildfire.  When people hover the mouse on each circle, it will shows detailed information about the wildfire represented by this circle, including the acreage, incident name, county name, and fuel model. </p>
@@ -79,27 +85,6 @@
 </div>
 
 <div><input type="range" class="slider" id="selectedYEAR">
-</div>
-
-
-  <div class="w3-col  w3-padding-large  "><br><br>
-    <div id="container">
-
-      <svg id="chart"> 
-       <g id="map"></g>
-        <g id="shapes"></g>
-        <g id="legend"></g>
-        
-</svg>
-
-
-
-    </div>
-    
-
-
-
-
 </div>
 
 </div>

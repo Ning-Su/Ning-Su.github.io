@@ -44,7 +44,7 @@ d3.queue()
 
 // //    var legendX = width+20;
 // //         var legendY = height-100;
-        var legendSize = 20;
+        var legendSize = 10;
 //         var legendPadding = 10;
 
     var legend = svg.selectAll("#legend")
@@ -65,10 +65,10 @@ console.log(legend);
             .enter()
             .append("rect")
             .attr("transform", function (d, i) {
-                return "translate(1250,"+(i*35)+")"
+                return "translate(0,"+(i*25)+")"
             })
             .attr("fill", o=>o)
-            .attr("y", "23px")
+            .attr("y", "0px")
             .attr("width", legendSize)
             .attr("height", legendSize);
 
@@ -77,10 +77,12 @@ console.log(legend);
             .data(Cause)
             .enter()
             .append("text")
+            .attr("font-family","Gill Sans")
+            .attr("font-size","14px")
             .attr("fill", "white")
-            .attr("y", "23px")
+            .attr("y", "0px")
             .attr("transform", function (d, i) {
-                return "translate(1290," + (i * 35+15) + ")"
+                return "translate(20," + (i * 25+10) + ")"
             })
             .text(o => o);
 
@@ -118,8 +120,8 @@ console.log(legend);
 
     var YEARLabel = svg.append("text")
         .attr("class","YEARLabel")
-        .attr("x",width-1400)
-        .attr("y", height-1100)
+        .attr("x",width-790)
+        .attr("y", height-90)
         .attr("opacity", 0.5)
         .attr("font-family","Gill Sans")
         .attr("font-size","120px")
@@ -129,8 +131,8 @@ console.log(legend);
 
 
     var rScale = d3.scaleSqrt()
-        .domain([0,700])
-        .range([0,100]);
+        .domain([0,1000])
+        .range([0,150]);
 
     function updateMap(YEAR) {
         var filtered_data = FireData.filter(function(d){
@@ -177,8 +179,8 @@ console.log(legend);
         YEARLabel.text(YEAR);
         svg.selectAll("circle")
             .on("mouseover",function(d){
-                var cx = +d3.select(this).attr("cx") + 50;
-                var cy = +d3.select(this).attr("cy") - 10;
+                var cx = d3.event.pageX + 15;
+                var cy = d3.event.pageY - 15;
                 tooltip.style("visibility","visible")
                     .style("left", cx +"px")
                     .style("top", cy + "px")
@@ -208,10 +210,12 @@ console.log(legend);
     })
 
 
-    var tooltip = d3.select("#chart")
+    var tooltip = d3.select("body")
     .append("div")
-    .attr("class","tooltip")
+    .attr("class","tooltip");
+    
 });
+
 
 function parseCSV(data) {
     var d = {};
@@ -224,7 +228,7 @@ function parseCSV(data) {
     d.Acreage = +data["Acreage"];
     d.date = new Date(data.Date);
     d.YEAR = data.YEAR;
-
+    return d;
 
         }
 
