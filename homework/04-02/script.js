@@ -42,13 +42,12 @@ d3.queue()
         });
 
 
-// //    var legendX = width+20;
-// //         var legendY = height-100;
-        var legendSize = 10;
-//         var legendPadding = 10;
 
-    var legend = svg.selectAll("#legend")
-    // .attr("transform", "translate(" + legendX + ", " + legendY + ")");
+        var legendSize = 10;
+
+
+    var legend = svg.selectAll("#legend");
+
 
 console.log(legend);
   
