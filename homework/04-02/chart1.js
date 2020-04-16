@@ -1,6 +1,6 @@
 d3.select(".w3-image")
   .on("mousemove", function() {
-    d3.select("#tooltip")
+    d3.select("#tooltip1")
       .style("display", "block")
       .style("top", d3.event.pageY + 20 + "px")
       .style("left", d3.event.pageX + 20 + "px")
@@ -10,7 +10,7 @@ d3.select(".w3-image")
   })
 
   .on("mouseout", function() {
-    d3.select("#tooltip")
+    d3.select("#tooltip1")
       .style("display", "none");
   });
 
