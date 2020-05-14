@@ -105,7 +105,7 @@ d3.csv("./data/weather.csv").then(function (data) {
           .call(d3.axisBottom().scale(xScale).tickFormat(d3.format("Y")));
   
         path1.datum(monthData)
-          .attr("stroke", lineColors[0])
+          .attr("stroke", lineColors[1])
           .attr("class", "line")
           .transition()
           .delay(200)
@@ -118,7 +118,7 @@ d3.csv("./data/weather.csv").then(function (data) {
           .delay(200)
           .duration(1000)
           .attr("d", line2)
-          .attr("stroke", lineColors[1])
+          .attr("stroke", lineColors[0])
           .attr("stroke-width", 2);
       })
   
